@@ -1,4 +1,4 @@
-package com.team3.cfgteam3;
+package com.team3.cfgteam3.model;
 
 public class Greeting {
 	
