@@ -6,7 +6,7 @@
 	<groupId>com.team3</groupId>
 	<artifactId>cfg-team3</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 
 	<name>cfg-team3</name>
 	<description>Code for Good Team 3</description>
@@ -41,6 +41,16 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
+		    <groupId>org.apache.tomcat.embed</groupId>
+		    <artifactId>tomcat-embed-jasper</artifactId>
+		    <scope>provided</scope>
+		</dependency>
+		<dependency>
+		    <groupId>javax.servlet</groupId>
+		    <artifactId>jstl</artifactId>
+		    <scope>provided</scope>
+    </dependency>
+    <dependency>
     			<groupId>com.h2database</groupId>
     			<artifactId>h2</artifactId>
     			<version>1.4.197</version>
