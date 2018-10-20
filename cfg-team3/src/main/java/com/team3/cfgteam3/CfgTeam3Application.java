@@ -2,6 +2,7 @@ package com.team3.cfgteam3;
 
 import java.sql.Connection;
 import java.sql.Statement;
+import java.sql.Time;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -10,10 +11,10 @@ import org.springframework.context.annotation.ComponentScan;
 @SpringBootApplication
 @ComponentScan("com.team3.*")
 public class CfgTeam3Application {
-
+	static Connection conn = null;
 	public static void main(String[] args) {
 		SpringApplication.run(CfgTeam3Application.class, args);
-		Connection conn = null;
+		
 		try {
 	     conn = DBClass.connectToH2();
 		
@@ -21,21 +22,11 @@ public class CfgTeam3Application {
 		
 		String sqlString = "CREATE TABLE IF NOT EXISTS Activity "
 				+ "(Name VARCHAR(1000) NOT NULL PRIMARY KEY, "
-				+ "Type VARCHAR(256) NOT NULL,"
-				+ "Last timestamp NOT NULL,"
-				+ "Total INTEGER(1000) DEFAULT 0,"
+				+ "Type VARCHAR(256) NOT NULL, "
+				+ "Last timestamp NOT NULL, "
+				+ "Total INTEGER(1000) DEFAULT 0, "
 				+ "Description VARCHAR(10000));";
 		stmt.execute(sqlString);
-//		Statement stmt2 = conn.createStatement();
-//		String sqlTrig = "CREATE TRIGGER updateTrigger "
-//				+ "BEFORE UPDATE ON Activity "
-//				+ "IF (OLD.last > NEW.last) THEN "
-//				+ "NEW = OLD "
-//				+ "ELSE "
-//				+ "NEW.Total = OLD.Total +1 "
-//				+ "END IF "
-//				+ "NEW;";
-//		stmt2.execute(sqlTrig);
 		}catch(Exception e) {
 			System.err.println(e.getMessage());
 		} finally {
@@ -43,4 +34,20 @@ public class CfgTeam3Application {
 		}
 		
 	}
+	public boolean update(String tname, String ttype, Time tlast, int ttotal, String descr) {
+		try {
+			conn = DBClass.connectToH2();
+			Statement stmt3 = conn.createStatement();
+			String sqlupdate = "IF name EXISTS IN Activity THEN "
+					+ "UPDATE Activity "
+					+ "SET Last=tlast "
+					+ "SET Total = ttotal " 
+					+ "WHERE Name = tname "
+					+ "ELSE INSERT INTO Activity VALUES(tname, ttype, tlast, ttotal, descr) "
+					+ "END IF;";
+			
+		return true;
+	}catch(Exception e) {
+		return false;
+	}}
 }
