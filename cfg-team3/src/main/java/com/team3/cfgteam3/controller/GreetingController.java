@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.team3.cfgteam3.Greeting;
+import com.team3.cfgteam3.model.Greeting;
 
 @RestController
 public class GreetingController {
