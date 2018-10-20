@@ -16,7 +16,7 @@ public class UserController {
 	
 	@RequestMapping("/user")
 	public String home(Map model) {
-		model.put("name", profileService.fetchData());
+		model.put("name", profileService.getDisplayName());
 		return "userInfo";
 	}
 }
