@@ -14,7 +14,6 @@ public class HomeController {
 	@Autowired
 	private ProfileService profileService;
 	
-	
     @RequestMapping("/test")
 	public String home(Map<String, String> model) {
     	model.put("name", profileService.getDisplayName());
