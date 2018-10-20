@@ -14,9 +14,10 @@ public class HomeController {
 	@Autowired
 	private ProfileService profileService;
 	
+	
     @RequestMapping("/test")
-	public String home(Map model) {
-    	model.put("name", profileService.fetchData());
+	public String home(Map<String, String> model) {
+    	model.put("name", profileService.getDisplayName());
 		return "index";
 	}
 	

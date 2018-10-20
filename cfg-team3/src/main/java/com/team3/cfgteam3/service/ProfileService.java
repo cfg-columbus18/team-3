@@ -2,5 +2,7 @@ package com.team3.cfgteam3.service;
 
 public interface ProfileService {
 
-	String fetchData();
+	String getDisplayName();
+	String getBadges();
+	String getAvatar();
 }
