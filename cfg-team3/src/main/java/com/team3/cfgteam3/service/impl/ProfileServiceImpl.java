@@ -7,7 +7,13 @@ import com.team3.cfgteam3.service.ProfileService;
 @Service
 public class ProfileServiceImpl implements ProfileService {
 
-	public String fetchData(){
-		return "Elizabeth 2.";
+	public String getDisplayName() {
+		return "Display Name";
+	}
+	public String getBadges(){
+		return "Current Badge";
+	}
+	public String getAvatar(){
+		return "Current Avatar";
 	}
 }
